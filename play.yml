@@ -1,32 +1,22 @@
 ---
-- name: Install httpd on web_apps group
+- name: Install and configure httpd on web apps
   hosts: web_apps
   become: yes
   tasks:
-    - name: Install Apache (httpd)
+    - name: Install Apache (httpd) on Amazon Linux
+      when: ansible_distribution == 'Amazon'
       yum:
         name: httpd
         state: present
 
-    - name: Ensure httpd is running and enabled
+    - name: Install Apache (httpd) on Fedora
+      when: ansible_distribution == 'Fedora'
+      shell: dnf install -y httpd
+      args:
+        creates: /usr/sbin/httpd
+
+    - name: Ensure httpd service is running and enabled
       service:
         name: httpd
         state: started
         enabled: yes
-
-- name: Ensure /opt/devops exists and contains info.txt on all nodes
-  hosts: all
-  become: yes
-  tasks:
-    - name: Create /opt/devops directory
-      file:
-        path: /opt/devops
-        state: directory
-        mode: '0755'
-
-    - name: Create info.txt inside /opt/devops
-      copy:
-        dest: /opt/devops/info.txt
-        content: "Hello from Ansible!"
-        mode: '0644'
-
