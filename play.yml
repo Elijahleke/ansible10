@@ -1,0 +1,17 @@
+---
+
+- name: Ensure /opt/devops exists and contains info.txt on all nodes
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create /opt/devops directory
+      file:
+        path: /opt/devops
+        state: directory
+        mode: '0755'
+
+    - name: Create info.txt inside /opt/devops
+      copy:
+        dest: /opt/devops/info.txt
+        content: "Hello from Ansible! with ELijahLeke"
+        mode: '0644'
