@@ -9,11 +9,6 @@
       name: git
       state: present
 
-#  - name: Host code
-#    git:
-#      repo: https://github.com/Elijahleke/ecomm-3.git
-#      dest: /var/www/html
-
   - name: Host code
     git:
       repo: https://github.com/Elijahleke/food.git
