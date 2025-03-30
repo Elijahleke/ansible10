@@ -1,0 +1,23 @@
+---
+- name: Install and configure httpd
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache (httpd) on Amazon Linux
+      when: ansible_distribution == 'Amazon'
+      yum:
+        name: httpd
+        state: present
+
+    - name: Install Apache (httpd) on Fedora
+      when: ansible_distribution == 'Fedora'
+      shell: dnf install -y httpd
+      args:
+        creates: /usr/sbin/httpd
+
+    - name: Ensure httpd service is running and enabled
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      ignore_errors: yes  # This will prevent the play from failing if httpd is not applicable to some hosts

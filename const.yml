@@ -1,0 +1,11 @@
+---
+- name: WEBSITE under construction
+  hosts: n2
+  become: yes
+
+  tasks:
+  - name: Update page
+    copy:
+      src: construction.html
+      dest: /var/www/html/index.html
+...
