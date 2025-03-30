@@ -1,11 +1,11 @@
 ---
   - name: Update static page
     copy:
-      src: static.html
-      dest: /var/www/html/static.html
+      src: onepage.html
+      dest: /var/www/html/onepage.html
 
-  - name: Update Dynamic page
+  - name: Update infoweb page
     template:
-      src: dynamic.j2
-      dest: /var/www/html/dynamic.html
+      src: onepage.j2
+      dest: /var/www/html/infoweb.html
 ...

@@ -1,0 +1,12 @@
+---
+- name: onepage Page
+  hosts: mobile
+  become: yes
+
+  tasks:
+  - name: Update onepage page
+    copy:
+      src: onepage.html
+      dest: /var/www/html/onepage.html
+      
+...
