@@ -1,0 +1,13 @@
+---
+- name: Variables Demo
+  hosts: mobile
+  become: yes
+  vars:
+    tutor: Cynthia
+
+  tasks:
+  - name: Update Dynamic page
+    template:
+      src: dynamic.j2
+      dest: /var/www/html/dynamic.html
+...
