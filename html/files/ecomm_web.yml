@@ -1,0 +1,12 @@
+---
+- name: Deploy Web App
+  hosts: web_apps
+  become: yes
+
+  tasks:
+  - name: Host code
+    git:
+      repo: https://github.com/Elijahleke/ecomm-3.git
+      dest: /var/www/html
+
+...
